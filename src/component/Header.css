@@ -1,43 +1,37 @@
-/* header.css */
-
 header {
+    padding: 10px 20px;
+}
+
+.header-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .logo {
-    font-size: 24px;
-  }
-  
-  .company-name {
-    font-size: 18px;
-  }
-  
-  nav ul {
+    flex-direction: column;
+}
+
+.logo {
+    width: 50px;
+    text-align: left;
+}
+
+.company-name {
+    position: absolute; top: 0px; right: 0px;
+}
+
+nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
     display: flex;
-  }
-  
-  nav ul li {
-    margin-right: 20px;
-  }
-  
-  nav ul li:last-child {
+    justify-content: center;
+}
+
+nav ul li {
+    margin-right: 46%;
+}
+
+nav ul li:last-child {
     margin-right: 0;
-  }
-  
-  nav ul li a {
-    color: #fff;
+}
+
+nav ul li a {
     text-decoration: none;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
+    font-weight: bold;
+}

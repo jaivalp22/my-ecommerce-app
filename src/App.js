@@ -1,40 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
-import HomeMainSection from './components/HomeMainSection';
-import Footer from './components/Footer';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Homepage from './component/Homepage';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <div className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </div>
-            <HomeMainSection />
-          </Route>
-          {/* Define other routes */}
-        </Switch>
-        <Footer />
+        <CustomRoutes />
       </div>
     </Router>
   );
-}
+};
 
 export default App;
+
+const CustomRoutes = () => {
+  const path = window.location.pathname;
+  
+  switch (path) {
+    case '/':
+      return <Homepage />;
+    default:
+      return <NotFoundPage />;
+  }
+};
+
+const NotFoundPage = () => {
+  return (
+    <div>
+      <h1>404 - Not Found</h1>
+      <p>The page you are looking for does not exist.</p>
+    </div>
+  );
+};

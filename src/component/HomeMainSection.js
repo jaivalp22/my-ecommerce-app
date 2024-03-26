@@ -1,4 +1,3 @@
-// HomeMainSection.js
 import React, { useState, useEffect } from 'react';
 import reviewsData from '../data/reviews';
 
@@ -19,20 +18,20 @@ const HomeMainSection = () => {
     <section>
       <div className="about-us">
         <h2>About Us</h2>
-        {/* Company's vision and mission */}
-        <p>Company's Vision and Mission Description</p>
+        
+        <p>Welcome to our online store! We are passionate about providing high-quality products and exeptional customer service. Learn more about our story and commitment to your satisfaction.</p>
         <button>Shop Now</button>
       </div>
       <div className="customer-reviews">
         <h2>Customer Reviews</h2>
-        {/* Display customer reviews */}
+        
         {reviews.map((review, index) => (
           <div key={index} className="review">
             <p>{review.customerName}</p>
             <p>{review.reviewContent}</p>
             <div className="rating">
               {[...Array(review.stars)].map((_, i) => (
-                <span key={i}>★</span>
+                <span key={i}>⭐</span>
               ))}
             </div>
           </div>
