@@ -33,6 +33,5 @@ nav ul li:last-child {
 }
 
 nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
+    text-decoration: underline;    
 }
