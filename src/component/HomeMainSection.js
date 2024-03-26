@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import reviewsData from '../data/reviews';
 
 const HomeMainSection = () => {
@@ -20,7 +21,9 @@ const HomeMainSection = () => {
         <p>
           Welcome to our online store! We are passionate about providing high-quality products and exceptional customer service. Learn more about our story and commitment to your satisfaction.
         </p>
-        <button>Shop Now</button>
+        <Link to='/productpage'>
+          <button>Shop Now</button>
+        </Link>
       </div>
       <div className="customer-reviews">
         <h2>Customer Reviews</h2>
