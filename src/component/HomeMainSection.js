@@ -5,26 +5,25 @@ const HomeMainSection = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const randomReviews = getRandomReviews();
-    setReviews(randomReviews);
+    getRandomReviews();
   }, []);
 
   const getRandomReviews = () => {
     const shuffledReviews = reviewsData.sort(() => 0.5 - Math.random());
-    return shuffledReviews.slice(0, 2);
-  }
-
+    setReviews(shuffledReviews.slice(0, 2));
+  };
+  
   return (
     <section>
       <div className="about-us">
         <h2>About Us</h2>
-        
-        <p>Welcome to our online store! We are passionate about providing high-quality products and exeptional customer service. Learn more about our story and commitment to your satisfaction.</p>
+        <p>
+          Welcome to our online store! We are passionate about providing high-quality products and exceptional customer service. Learn more about our story and commitment to your satisfaction.
+        </p>
         <button>Shop Now</button>
       </div>
       <div className="customer-reviews">
         <h2>Customer Reviews</h2>
-        
         {reviews.map((review, index) => (
           <div key={index} className="review">
             <p>{review.customerName}</p>
@@ -39,6 +38,6 @@ const HomeMainSection = () => {
       </div>
     </section>
   );
-}
+};
 
 export default HomeMainSection;
