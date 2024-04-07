@@ -7,17 +7,21 @@ import Footer from './Footer';
 const LoginPage = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
 
-  const toggleForm = () => {
-    setIsLoginForm(!isLoginForm);
+  const toggleFormL = () => {
+    setIsLoginForm(false);
+  };
+
+  const toggleFormS = () => {
+    setIsLoginForm(true);
   };
 
   return (
     <div>
       <Header />
       {isLoginForm ? 
-        <LoginForm toggleForm={toggleForm} />
+        <LoginForm toggleFormL={toggleFormL} />
        : 
-        <SignupForm toggleForm={toggleForm} />
+        <SignupForm toggleFormS={toggleFormS} />
       }
       <Footer />
     </div>

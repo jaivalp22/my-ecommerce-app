@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
 
-const SignupForm = ({ toggleForm }) => {
+const SignupForm = ({ toggleFormS }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (password.trim() !== confirmPassword.trim()) {
-      setError('The Passwords do not match. Please try again.');
-      return;
-    }
 
     if (!username.trim() || !password.trim() || !confirmPassword.trim() || !email.trim()) {
       setError('All fields are required!');
       return;
     }
+
+    if (password.trim() !== confirmPassword.trim()) {
+      setError('The Passwords do not match. Please try again.');
+      return;
+    } 
+  
+    try {
+      const response = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              username: username,
+              password: password,
+              email: email
+          })
+      });
+
+      if (response.ok) {
+          setError('User signed up successfully!');
+      } else {
+          setError('Username exists already.');
+      }
+  } catch (error) {
+      console.error('Error signing up:', error);
+      setError('Failed to sign up user, server issue');
+  }
   };
 
   const handleChange = (e) => {
@@ -92,7 +115,7 @@ const SignupForm = ({ toggleForm }) => {
         </section>
         <button type="submit">Signup</button>
       </form>
-      <button onClick={toggleForm}>Switch to Login</button>
+      <button onClick={toggleFormS}>Switch to Login</button>
     </div>
   );
 };

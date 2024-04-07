@@ -21,7 +21,7 @@ const HomeMainSection = () => {
         <p>
           Welcome to our online store! We are passionate about providing high-quality products and exceptional customer service. Learn more about our story and commitment to your satisfaction.
         </p>
-        <Link to='/productpage'>
+        <Link to='/products'>
           <button>Shop Now</button>
         </Link>
       </div>

@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from "./authenticator";
 
-const LoginForm = ({ toggleForm }) => {
+const LoginForm = ({ toggleFormL }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {setIsLoggedIn} = useContext(AuthContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,11 +22,12 @@ const LoginForm = ({ toggleForm }) => {
         });
         
         if (response.ok) {
+          console.log(response.ok);
           const data = await response.json();
           if (data.message === 'Login successful') {
             console.log(data);
             setIsLoggedIn(true);
-            Navigate('/products');
+            navigate('/products');
           } else {
             setError(data.message);
           }
@@ -67,7 +69,7 @@ const LoginForm = ({ toggleForm }) => {
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Login</button>
       </form>
-      <button onClick={toggleForm}>Switch to Signup</button>
+      <button onClick={toggleFormL}>Switch to Signup</button>
     </section>
   );
 };
