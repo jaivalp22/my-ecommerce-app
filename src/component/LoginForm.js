@@ -1,8 +1,5 @@
 import React from 'react';
-
 const LoginForm = ({ toggleForm }) => {
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };

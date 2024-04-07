@@ -5,20 +5,20 @@ import SignupForm from './SignupForm';
 import Footer from './Footer';
 
 const LoginPage = () => {
-  const [showSignup, setShowSignup] = useState(false);
+  const [isLoginForm, setIsLoginForm] = useState(true);
 
   const toggleForm = () => {
-    setShowSignup(!showSignup);
+    setIsLoginForm(!isLoginForm);
   };
 
   return (
     <div>
       <Header />
-      {showSignup ? (
-        <SignupForm toggleForm={toggleForm} />
-      ) : (
+      {isLoginForm ? 
         <LoginForm toggleForm={toggleForm} />
-      )}
+       : 
+        <SignupForm toggleForm={toggleForm} />
+      }
       <Footer />
     </div>
   );

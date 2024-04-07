@@ -19,8 +19,6 @@ const SignupForm = ({ toggleForm }) => {
       setError('All fields are required!');
       return;
     }
-
-    // Your form submission logic goes here
   };
 
   const handleChange = (e) => {
