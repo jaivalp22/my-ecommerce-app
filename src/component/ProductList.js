@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProductList({ cartadder }) {
   const { isLoggedIn } = React.useContext(AuthContext);
-  const navigate = useNavigate();
+  const navigator = useNavigate();
 
   if (!isLoggedIn){
-    navigate('/login');
+    navigator('/login');
   }
 
   const [productsData, setProducts] = React.useState([]);
@@ -17,7 +17,7 @@ export default function ProductList({ cartadder }) {
     fetch('http://localhost:5000/products')
       .then(response => response.json())
       .then(data => setProducts(data))
-      .catch((error) => console.error('Error:', error));
+      .catch(error => console.error('Error:', error));
   }, []);
 
   return (

@@ -80,7 +80,7 @@ products = [
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    data = request.json
+    data = request.get_json()
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
@@ -97,7 +97,7 @@ def signup():
 
 @app.route('/login', methods=['POST'])
 def login():
-    data = request.json
+    data = request.get_json()
     username = data.get('username')
     password = data.get('password')
 
