@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 const LoginForm = ({ toggleForm }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -13,20 +16,23 @@ const LoginForm = ({ toggleForm }) => {
                 type = "text"
                 id = "username"
                 name = "username"
+                value = {username}
                 placeholder = "Enter your Username"
+                onChange = {(e) => setUsername(e.target.value)}
                 required
                 />
-        <br />
+        <br/>
         <label htmlFor = "password">Password:</label>
             <input
                 type = "password"
                 id = "password"
                 name = "password"
+                value = {password}
                 placeholder = "Enter your Password"
+                onChange = {(e) => setPassword(e.target.value)}
                 required
                 />
-        <br />
-
+        <br/>
         <button type="submit">Login</button>
       </form>
       <button onClick={toggleForm}>Switch to Signup</button>
