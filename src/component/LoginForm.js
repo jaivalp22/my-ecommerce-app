@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {useNavigate} from 'react-router-dom';
+import {authenticator} from "./authenticator";
+
 const LoginForm = ({ toggleForm }) => {
-  const handleSubmit = (e) => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+  const navigator = useNavigate();
+
+  const {setIsLoggedIn} = useContext(authenticator);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+        const response = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.message === 'Login successful') {
+            console.log(data);
+            setIsLoggedIn(true);
+            navigator('/products');
+          } else {
+            setError(data.message);
+          }
+        } else {
+          const data = await response.json();
+          setError(data.message);
+        }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Failed to login');
+    }
   };
 
   return (
@@ -14,6 +49,8 @@ const LoginForm = ({ toggleForm }) => {
                 id = "username"
                 name = "username"
                 placeholder = "Enter your Username"
+                value = {username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 />
         <br />
@@ -23,10 +60,12 @@ const LoginForm = ({ toggleForm }) => {
                 id = "password"
                 name = "password"
                 placeholder = "Enter your Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 />
         <br />
-
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <button type="submit">Login</button>
       </form>
       <button onClick={toggleForm}>Switch to Signup</button>

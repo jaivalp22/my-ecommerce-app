@@ -4,6 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+users = []
 products = [
     {
         "id": 1,
@@ -77,3 +78,39 @@ products = [
     }
 ]
 
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    user = {'username': username, 'password': password, 'email': email}
+
+    for existing_user in users:
+        if existing_user['username'] == username:
+            return jsonify({'message': 'Username already exists'}), 400
+    
+    users.append(user)
+
+    return jsonify({'message': 'Signup successful'}), 200
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+
+    for existing_account in users:
+        if existing_account['username'] == username and existing_account['password'] == password:
+            return jsonify({'message': 'Login successful'}), 200
+
+    return jsonify({'message': 'Invalid username or password'}), 401
+
+@app.route('/products', methods=['GET'])
+def get_products():
+    return jsonify(products), 200
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
