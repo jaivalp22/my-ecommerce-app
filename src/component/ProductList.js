@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProductList({ cartadder }) {
   const { isLoggedIn } = React.useContext(AuthContext);
-  const navigator = useNavigate();
+  const Navigate = useNavigate();
 
   if (!isLoggedIn){
-    navigator('/login');
+    Navigate('/login');
   }
 
   const [productsData, setProducts] = React.useState([]);

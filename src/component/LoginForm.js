@@ -6,7 +6,7 @@ const LoginForm = ({ toggleForm }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
-  const navigator = useNavigate();
+  const Navigate = useNavigate();
 
   const {setIsLoggedIn} = useContext(AuthContext);
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const LoginForm = ({ toggleForm }) => {
           if (data.message === 'Login successful') {
             console.log(data);
             setIsLoggedIn(true);
-            navigator('/products');
+            Navigate('/products');
           } else {
             setError(data.message);
           }
@@ -35,7 +35,6 @@ const LoginForm = ({ toggleForm }) => {
         }
     } catch (error) {
       console.error('Error:', error);
-      setError('Failed to login');
     }
   };
 
@@ -49,10 +48,10 @@ const LoginForm = ({ toggleForm }) => {
                 id = "username"
                 name = "username"
                 value = {username}
-                placeholder = "Enter your Username"
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder = "Enter your Username"
                 required
-                />
+            />
         <br/>
         <label htmlFor = "password">Password:</label>
             <input
@@ -60,8 +59,8 @@ const LoginForm = ({ toggleForm }) => {
                 id = "password"
                 name = "password"
                 value = {password}
-                placeholder = "Enter your Password"
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder = "Enter your Password"
                 required
                 />
         <br />
