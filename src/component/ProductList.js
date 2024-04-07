@@ -14,7 +14,7 @@ export default function ProductList({ cartadder }) {
   const [productsData, setProducts] = React.useState([]);
   
   React.useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch('http://localhost:3000/products')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch((error) => console.error('Error:', error));
