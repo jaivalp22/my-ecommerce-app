@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {useNavigate} from 'react-router-dom';
-import {authenticator} from "./authenticator";
+import {AuthContext} from "./authenticator";
 
 const LoginForm = ({ toggleForm }) => {
   const [username, setUsername] = React.useState('');
@@ -8,11 +8,11 @@ const LoginForm = ({ toggleForm }) => {
   const [error, setError] = React.useState('');
   const navigator = useNavigate();
 
-  const {setIsLoggedIn} = useContext(authenticator);
+  const {setIsLoggedIn} = useContext(AuthContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('http://localhost:5000/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
