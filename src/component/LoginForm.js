@@ -12,7 +12,7 @@ const LoginForm = ({ toggleForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('http://localhost:5000/login', {
+        const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -48,19 +48,19 @@ const LoginForm = ({ toggleForm }) => {
                 type = "text"
                 id = "username"
                 name = "username"
-                placeholder = "Enter your Username"
                 value = {username}
+                placeholder = "Enter your Username"
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 />
-        <br />
+        <br/>
         <label htmlFor = "password">Password:</label>
             <input
                 type = "password"
                 id = "password"
                 name = "password"
+                value = {password}
                 placeholder = "Enter your Password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
